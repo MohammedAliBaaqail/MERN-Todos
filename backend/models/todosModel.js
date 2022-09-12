@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-const todoSchema = new mongoose.Schema({
+const Schema = mongoose.Schema
+
+const todoSchema = new Schema({
     title:{
         type: String,
         required: true
@@ -14,6 +16,10 @@ const todoSchema = new mongoose.Schema({
         type: String,
         default: 'One Hour',
         required: true
+    },
+    completed: {
+        type: Boolean,
+        default: false,
     },
 }, {timestamps: true});
 
