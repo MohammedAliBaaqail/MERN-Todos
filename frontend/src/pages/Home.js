@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react"
+import { useEffect,  } from "react"
+import {useTodosContext} from "../hooks/useTodosContext"
+
 import TodoDetails from "../components/TodoDetails"
 import TodoForm from "../components/TodoForm"
+
 // components
 
 
 const Home = () => {
-  const [todos, setTodos] = useState(null)
+    const { todos, dispatch } = useTodosContext()
 
   useEffect(() => {
     const getTodos = async () => {
@@ -14,15 +17,17 @@ const Home = () => {
 
       if (response.ok) {
         // console.log(data)
-        setTodos(data)
+        dispatch({type: 'SET_TODOS' , payload: data})
+       
       }
     }
 
     getTodos()
-  }, [])
+  }, [dispatch])
   
   return (
     <div className="home">
+        <TodoForm />
         <div className="todos-container">
             {todos && todos.map(todo => (
                 <TodoDetails todo={todo} key={todo._id} />
@@ -30,7 +35,7 @@ const Home = () => {
             ))}
             
         </div>
-        <TodoForm />
+        
     </div>
   )
 }

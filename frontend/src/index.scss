@@ -1,0 +1,229 @@
+@import url("https://fonts.googleapis.com/css2?family=Koulen&family=Open+Sans&family=Oswald&family=Roboto+Flex:opsz@8..144&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Saira+Semi+Condensed:wght@300&display=swap");
+
+@mixin box-shadow {
+   
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+@mixin second-color-bg {
+    background: linear-gradient(90deg, var(--second-color), var(--second-color-dark));
+    background-size: 100% 100%;
+
+    -webkit-animation: AnimationName 10s ease infinite;
+    -moz-animation: AnimationName 10s ease infinite;
+    animation: AnimationName 10s ease infinite;
+
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 51%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 51%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 51%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 51%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 51%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 51%}
+}
+
+}
+:root{
+  --first-color: #08b0a0; 
+  --first-color-dark: #06786c; 
+  --second-color: #e5b311 ;
+  --second-color-dark: #c49705 ;
+  --white-color: #f1f1f1;
+  --dark-color:#0a0a0a; 
+  --err-clr: #ff0000;
+  
+  
+}
+*{
+    font-family: "Saira Semi Condensed", sans-serif;
+}
+body {
+  margin: 0;
+//   background: var(--first-color);
+  margin: 0;
+
+  font-weight: 600;
+
+
+
+    background: linear-gradient(90deg, var(--first-color), var(--first-color-dark));
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 10s ease infinite;
+    -moz-animation: AnimationName 10s ease infinite;
+    animation: AnimationName 10s ease infinite;
+
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 51%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 51%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 51%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 51%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 51%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 51%}
+}
+
+  
+}
+
+.nav-container { @include second-color-bg;
+  
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.449);
+  margin-bottom: 10px;
+}
+.nav-container .nav {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-container a {
+  color: #333;
+  text-decoration: none;
+}
+.pages-container{
+  max-width: 1400px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+input.error {
+  border: 3px solid var(--err-clr) !important;
+}
+
+
+.material-symbols-outlined{
+  cursor: pointer;
+}
+
+.todo-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    
+    input{
+        
+            background: var(--first-color);
+            padding: 10px;
+            padding-left: 20px;
+            margin: 8px;
+            height: 15px;
+            font-size: 1.2em;
+            font-weight: 600;
+            border: #028174 3px solid;
+            border-radius: 1em;
+            box-shadow: inset 6px 6px 6px #057166, inset -6px -6px 6px #0ae1cb;
+            &:focus{
+                outline: none;
+            }
+          
+    }
+
+    button{
+
+        align-items: center;
+        
+        background-image: radial-gradient(100% 100% at 100% 0, #057166 0, #08b0a0 100%);
+        border: 0;
+        border-radius: 1em;
+        box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+        box-sizing: border-box;
+        margin: 10px 0 ;
+        cursor: pointer;
+        display: inline-flex;
+        
+        height: 48px;
+        justify-content: center;
+        line-height: 1;
+        list-style: none;
+        overflow: hidden;
+        padding-left: 16px;
+        padding-right: 16px;
+        position: relative;
+        text-align: left;
+        text-decoration: none;
+        transition: box-shadow .15s,transform .15s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        white-space: nowrap;
+        will-change: box-shadow,transform;
+        font-size: 1.3em;
+        
+
+        &:focus {
+        box-shadow: #08b0a0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #08b0a0 0 -3px 0 inset;
+        }
+
+        &:hover {
+        box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #057166 0 -3px 0 inset;
+        transform: translateY(-2px);
+        }
+
+        &:active {
+        box-shadow: #08b0a0 0 3px 7px inset;
+        transform: translateY(2px);
+        }
+            }
+
+        }
+
+.todo-details{
+
+
+    // padding: 10px;
+
+    margin:  20px 0 ;
+
+    .box{ @include box-shadow;@include second-color-bg;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        position: relative;
+        // background-color:var(--second-color) ;
+        
+        padding: 20px;
+        
+        border-radius: 1em;
+        
+
+
+
+       
+    
+
+    }
+        
+
+}
+
+
+.todo-form{ @include second-color-bg;
+    @include box-shadow;
+    background-color: var(--second-color);
+    border-radius: 1em;
+    padding: 20px;
+}
