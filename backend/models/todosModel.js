@@ -21,6 +21,10 @@ const todoSchema = new Schema({
         type: Boolean,
         default: false,
     },
+    completedAt: {
+        type: Date,
+        default: null,
+    }
 }, {timestamps: true});
 
 module.exports = mongoose.model('Todo', todoSchema);
