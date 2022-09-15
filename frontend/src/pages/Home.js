@@ -27,7 +27,7 @@ const Home = () => {
   
   return (
     <div className="home">
-        <TodoForm />
+        <TodoForm todos={todos}/>
         <div className="todos-container">
             {todos && todos.map(todo => (
                 <TodoDetails todo={todo} key={todo._id} />

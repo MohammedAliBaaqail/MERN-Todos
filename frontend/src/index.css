@@ -3,16 +3,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Saira+Semi+Condensed:wght@300&display=swap");
 :root {
   --first-color: #08b0a0;
-  --first-color-dark: #06786c;
+  --first-color-dark: #037267;
   --second-color: #e5b311 ;
   --second-color-dark: #c49705 ;
   --white-color: #f1f1f1;
   --dark-color:#0a0a0a;
-  --err-clr: #ff0000;
+  --err-clr: #d20202;
 }
 
 * {
   font-family: "Saira Semi Condensed", sans-serif;
+  color: var(--first-color-dark);
+  text-shadow: 0 2px 4px #0a0a0a18;
 }
 
 body {
@@ -48,6 +50,65 @@ body {
   100% {
     background-position: 0% 51%;
   }
+}
+
+button {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: var(--second-color);
+  font-size: 1.3em;
+  font-weight: 600;
+  background-image: radial-gradient(100% 100% at 100% 0, #057166 0, #08b0a0 100%);
+  border: 0;
+  border-radius: 1em;
+  -webkit-box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+          box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 10px;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  height: 48px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  -webkit-transition: -webkit-box-shadow .15s,-webkit-transform .15s;
+  transition: -webkit-box-shadow .15s,-webkit-transform .15s;
+  transition: box-shadow .15s,transform .15s;
+  transition: box-shadow .15s,transform .15s,-webkit-box-shadow .15s,-webkit-transform .15s;
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+}
+
+button:hover {
+  -webkit-box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #057166 0 -3px 0 inset;
+          box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #057166 0 -3px 0 inset;
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
+button:active {
+  -webkit-box-shadow: #08b0a0 0 3px 7px inset;
+          box-shadow: #08b0a0 0 3px 7px inset;
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
 }
 
 .nav-container {
@@ -101,7 +162,7 @@ body {
 }
 
 .nav-container a {
-  color: #333;
+  color: var(--first-color-dark);
   text-decoration: none;
 }
 
@@ -111,8 +172,20 @@ body {
   margin: 0 auto;
 }
 
+.error-msg {
+  color: var(--err-clr);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
 input.error {
   border: 3px solid var(--err-clr) !important;
+}
+
+.highlight {
+  color: var(--first-color-dark);
+  font-size: 1.5rem;
 }
 
 .material-symbols-outlined {
@@ -134,6 +207,7 @@ input.error {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-bottom: 20px;
+  font-size: 1.2em;
 }
 
 .todo-form input {
@@ -145,7 +219,7 @@ input.error {
   font-size: 1.2em;
   font-weight: 600;
   border: #028174 3px solid;
-  border-radius: 1em;
+  border-radius: 0.6em;
   -webkit-box-shadow: inset 6px 6px 6px #057166, inset -6px -6px 6px #0ae1cb;
           box-shadow: inset 6px 6px 6px #057166, inset -6px -6px 6px #0ae1cb;
 }
@@ -154,73 +228,11 @@ input.error {
   outline: none;
 }
 
-.todo-form button {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-image: radial-gradient(100% 100% at 100% 0, #057166 0, #08b0a0 100%);
-  border: 0;
-  border-radius: 1em;
-  -webkit-box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
-          box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  margin: 10px 0;
-  cursor: pointer;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  height: 48px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  line-height: 1;
-  list-style: none;
-  overflow: hidden;
-  padding-left: 16px;
-  padding-right: 16px;
-  position: relative;
-  text-align: left;
-  text-decoration: none;
-  -webkit-transition: -webkit-box-shadow .15s,-webkit-transform .15s;
-  transition: -webkit-box-shadow .15s,-webkit-transform .15s;
-  transition: box-shadow .15s,transform .15s;
-  transition: box-shadow .15s,transform .15s,-webkit-box-shadow .15s,-webkit-transform .15s;
-  -moz-user-select: none;
-   -ms-user-select: none;
-       user-select: none;
-  -webkit-user-select: none;
-  -ms-touch-action: manipulation;
-      touch-action: manipulation;
-  white-space: nowrap;
-  will-change: box-shadow,transform;
-  font-size: 1.3em;
-}
-
-.todo-form button:focus {
-  -webkit-box-shadow: #08b0a0 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #08b0a0 0 -3px 0 inset;
-          box-shadow: #08b0a0 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #08b0a0 0 -3px 0 inset;
-}
-
-.todo-form button:hover {
-  -webkit-box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #057166 0 -3px 0 inset;
-          box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #057166 0 -3px 0 inset;
-  -webkit-transform: translateY(-2px);
-          transform: translateY(-2px);
-}
-
-.todo-form button:active {
-  -webkit-box-shadow: #08b0a0 0 3px 7px inset;
-          box-shadow: #08b0a0 0 3px 7px inset;
-  -webkit-transform: translateY(2px);
-          transform: translateY(2px);
-}
-
 .todo-details {
   margin: 20px 0;
 }
 
-.todo-details .box {
+.box {
   -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
           box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   background: -webkit-gradient(linear, left top, right top, from(var(--second-color)), to(var(--second-color-dark)));
@@ -235,12 +247,12 @@ input.error {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: relative;
   padding: 20px;
   border-radius: 1em;
@@ -268,6 +280,57 @@ input.error {
   100% {
     background-position: 0% 51%;
   }
+}
+
+.box .toggle {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 62px;
+  height: 32px;
+  display: inline-block;
+  position: relative;
+  border-radius: 50px;
+  overflow: hidden;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: var(--second-color-dark);
+  -webkit-transition: background-color ease 0.3s;
+  transition: background-color ease 0.3s;
+}
+
+.box .toggle:before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 2;
+  width: 28px;
+  height: 28px;
+  background: #fff;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  font: 10px/28px Helvetica;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-indent: -22px;
+  word-spacing: 37px;
+  color: #fff;
+  text-shadow: -1px -1px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  -webkit-transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
+  transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
+}
+
+.box .toggle:checked {
+  background-color: var(--first-color);
+}
+
+.box .toggle:checked:before {
+  left: 32px;
 }
 
 .todo-form {
@@ -305,5 +368,142 @@ input.error {
   100% {
     background-position: 0% 51%;
   }
+}
+
+/* navbar */
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: var(--first-color-dark);
+}
+
+nav a {
+  margin-left: 20px;
+  color: var(--first-color);
+  font-size: 1.5em;
+}
+
+/* auth forms */
+form.signup, form.login {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  color: var(--first-color);
+}
+
+form.signup input, form.login input {
+  background: var(--first-color);
+  padding: 10px;
+  padding-left: 20px;
+  margin: 8px;
+  height: 15px;
+  font-size: 1.2em;
+  font-weight: 600;
+  border: #028174 3px solid;
+  border-radius: 0.6em;
+  -webkit-box-shadow: inset 6px 6px 6px #057166, inset -6px -6px 6px #0ae1cb;
+          box-shadow: inset 6px 6px 6px #057166, inset -6px -6px 6px #0ae1cb;
+  margin-bottom: 30px;
+}
+
+form.signup input:focus, form.login input:focus {
+  outline: none;
+}
+
+form.signup button, form.login button {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: var(--second-color);
+  font-size: 1.3em;
+  font-weight: 600;
+  background-image: radial-gradient(100% 100% at 100% 0, #057166 0, #08b0a0 100%);
+  border: 0;
+  border-radius: 1em;
+  -webkit-box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+          box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 10px;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  height: 48px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  -webkit-transition: -webkit-box-shadow .15s,-webkit-transform .15s;
+  transition: -webkit-box-shadow .15s,-webkit-transform .15s;
+  transition: box-shadow .15s,transform .15s;
+  transition: box-shadow .15s,transform .15s,-webkit-box-shadow .15s,-webkit-transform .15s;
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+}
+
+form.signup button:hover, form.login button:hover {
+  -webkit-box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #057166 0 -3px 0 inset;
+          box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #057166 0 -3px 0 inset;
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
+form.signup button:active, form.login button:active {
+  -webkit-box-shadow: #08b0a0 0 3px 7px inset;
+          box-shadow: #08b0a0 0 3px 7px inset;
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
+}
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: var(--second-color);
+  background: var(--first-color);
+}
+
+::selection {
+  color: var(--second-color);
+  background: var(--first-color);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--second-color);
+  -webkit-box-shadow: inset 0 0 5px grey;
+          box-shadow: inset 0 0 5px grey;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--first-color-dark);
+  border-radius: 100px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--first-color);
 }
 /*# sourceMappingURL=index.css.map */
