@@ -24,6 +24,8 @@ const Home = () => {
         const search = e.target.value
         const filterdTodos = todos.filter(todo => {
             return todo.title.toLowerCase().includes(search.toLowerCase())
+             || todo.date.toLowerCase().includes(search.toLowerCase())
+             || todo.duration.toLowerCase().includes(search.toLowerCase()) 
         })
         setFilterdTodos(filterdTodos)
     }
