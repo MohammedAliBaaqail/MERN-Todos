@@ -185,7 +185,7 @@ input.error {
 
 .highlight {
   color: var(--first-color-dark);
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 }
 
 .material-symbols-outlined {
@@ -471,6 +471,31 @@ form.signup button:active, form.login button:active {
           box-shadow: #08b0a0 0 3px 7px inset;
   -webkit-transform: translateY(2px);
           transform: translateY(2px);
+}
+
+.loading {
+  color: var(--err-clr);
+  font-size: 3.5rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.search-todos {
+  background: var(--first-color);
+  padding: 10px;
+  padding-left: 20px;
+  margin: 8px;
+  height: 15px;
+  font-size: 1.2em;
+  font-weight: 600;
+  border: #028174 3px solid;
+  border-radius: 0.6em;
+  -webkit-box-shadow: inset 6px 6px 6px #057166, inset -6px -6px 6px #0ae1cb;
+          box-shadow: inset 6px 6px 6px #057166, inset -6px -6px 6px #0ae1cb;
+}
+
+.search-todos:focus {
+  outline: none;
 }
 
 ::-moz-selection {

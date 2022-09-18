@@ -24,6 +24,10 @@ const todoSchema = new Schema({
     completedAt: {
         type: Date,
         default: null,
+    },
+    user_id: {
+      type: String,
+      required: true
     }
 }, {timestamps: true});
 

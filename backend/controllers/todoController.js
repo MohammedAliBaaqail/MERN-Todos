@@ -1,10 +1,12 @@
-const { model } = require('mongoose');
+
 const Todo = require('../models/todosModel');
 const mongoose = require('mongoose');
 
 // get all todos
 const getAllTodos = async (req, res) => {
-    const todos = await Todo.find({}).sort({createdAt: -1});
+    const user_id = req.user._id
+
+    const todos = await Todo.find({user_id}).sort({createdAt: -1});
     res.status(200).json(todos);
 }
 // get one todo
@@ -42,9 +44,10 @@ const CreateTodo = async (req, res) => {
         return res.status(400).json({ error: 'Please fill in all fields', emptyFields })
     }
 
-
+  // add doc to db
     try {
-        const todo = await Todo.create({title, date, duration});
+        const user_id = req.user._id
+        const todo = await Todo.create({title, date, duration, user_id});
         res.status(200).json(todo);
     } catch (error) {
         res.status(400).json({error: error.message});

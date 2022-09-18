@@ -1,12 +1,15 @@
 import React , { useState} from 'react'
 import { useTodosContext } from "../hooks/useTodosContext"
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 
 export default function CompletedTodo({todo}) {
     const { dispatch } = useTodosContext()
     const [completed , setCompleted] = useState(todo.completed)
     const [completedAt , setCompletedAt] = useState(todo.completedAt)
+    const { user } = useAuthContext()
+
 
 
     const handleClick = async () => {
@@ -16,7 +19,8 @@ export default function CompletedTodo({todo}) {
             method: 'PATCH',
             body: JSON.stringify({completed: !completed , completedAt: new Date()}),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             },
             
            
