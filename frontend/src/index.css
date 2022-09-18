@@ -61,7 +61,7 @@ button {
   font-weight: 600;
   background-image: radial-gradient(100% 100% at 100% 0, #057166 0, #08b0a0 100%);
   border: 0;
-  border-radius: 1em;
+  border-radius: 0.5em;
   -webkit-box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
           box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
   -webkit-box-sizing: border-box;
@@ -333,6 +333,19 @@ input.error {
   left: 32px;
 }
 
+.box .flex-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
 .todo-form {
   background: -webkit-gradient(linear, left top, right top, from(var(--second-color)), to(var(--second-color-dark)));
   background: linear-gradient(90deg, var(--second-color), var(--second-color-dark));
@@ -423,7 +436,7 @@ form.signup button, form.login button {
   font-weight: 600;
   background-image: radial-gradient(100% 100% at 100% 0, #057166 0, #08b0a0 100%);
   border: 0;
-  border-radius: 1em;
+  border-radius: 0.5em;
   -webkit-box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
           box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
   -webkit-box-sizing: border-box;
@@ -496,6 +509,48 @@ form.signup button:active, form.login button:active {
 
 .search-todos:focus {
   outline: none;
+}
+
+.input {
+  background: var(--first-color);
+  padding: 10px;
+  padding-left: 20px;
+  margin: 8px;
+  height: 15px;
+  font-size: 1.2em;
+  font-weight: 600;
+  border: #028174 3px solid;
+  border-radius: 0.6em;
+  -webkit-box-shadow: inset 6px 6px 6px #057166, inset -6px -6px 6px #0ae1cb;
+          box-shadow: inset 6px 6px 6px #057166, inset -6px -6px 6px #0ae1cb;
+}
+
+.input:focus {
+  outline: none;
+}
+
+form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+form button {
+  width: 150px;
+}
+
+.hide {
+  display: none;
 }
 
 ::-moz-selection {

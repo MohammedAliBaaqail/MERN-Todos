@@ -26,7 +26,7 @@ export default function CompletedTodo({todo}) {
            
         })
         const data = await response.json()
-       console.log(data.completed)
+    //    console.log(data.completed)
     //    setCompleted(data.completed)
         if (response.ok) {
             // data.completed = !data.completed

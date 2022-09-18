@@ -68,13 +68,14 @@
   font-weight: 600;
   background-image: radial-gradient(100% 100% at 100% 0, #057166 0, #08b0a0 100%);
   border: 0;
-  border-radius: 1em;
+  border-radius: 0.5em;
   box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
   box-sizing: border-box;
   margin: 10px  ;
   cursor: pointer;
   display: inline-flex;
   height: 48px;
+  // width: 130px;
   justify-content: center;
   line-height: 1;
   list-style: none;
@@ -255,6 +256,7 @@ input.error {
           cursor: pointer;
           background-color: var(--second-color-dark);
           transition: background-color ease 0.3s;
+     
         }
         
         .toggle:before {
@@ -287,7 +289,11 @@ input.error {
         .toggle:checked:before {
           left: 32px;
         }  
-       
+       .flex-input{
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+       }
     
 
     }
@@ -340,6 +346,25 @@ form.signup, form.login {
 }
 .search-todos{@include input;
 
+}
+.input {
+    @include input;
+
+
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  button{
+    width: 150px;
+  }
+}
+
+.hide{
+    display: none;
 }
 
 ////**********////

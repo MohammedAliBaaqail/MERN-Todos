@@ -53,10 +53,10 @@ const Home = () => {
 
         <div className="todos-container">
 
-            {console.log(filterdTodos,"filterdTodos")}
+
             {filterdTodos ? filterdTodos.map(todo => (
                 <TodoDetails todo={todo} key={todo._id} />
-               )): <h1 className="loading">loading</h1>}
+               )): <h1 className="loading">Loading</h1>}
            { filterdTodos ? filterdTodos.length === 0 &&<h1 className="loading">No Todos Found!</h1>: <></>}
             
         </div>
