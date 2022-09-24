@@ -5,6 +5,9 @@ import React from "react";
 
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import CompletedTodo from "./CompletedTodo";
+import EditTitle from "./EditTitle";
+import EditDuration from "./EditDuration";
+import EditDate from "./EditDate";
 
 const TodoDetails = ({ todo }) => {
   const { dispatch } = useTodosContext();
@@ -91,25 +94,11 @@ const TodoDetails = ({ todo }) => {
       <div className="box">
 
 
-        <div className="flex-input">
-      <input type="checkbox" className="toggle hide-class" onClick={handleToggoleTitle}  />
-      <div className={!hiddenTitle ? "hide" : ""} >
-         <h3 className="highlight">Title: {todo.title}</h3>
-        </div>
-         <div className={hiddenTitle ? "hide" : ""} >
-            <input
-              defaultValue={todo.title}
-              type="text"
-              className="input updated-title"
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <button className="btn" onClick={handleEdit}>
-              Edit Title
-            </button>
-          </div>
-        </div>
+      <EditTitle todo={todo}/>
+      <EditDuration todo={todo}/>
+      <EditDate todo={todo}/>
         
-        <div className="flex-input">
+        {/* <div className="flex-input">
         <input type="checkbox" className="toggle" onClick={handleToggoleDate} />
         <div className={!hiddenDate ? "hide" : ""} >
         <h3>Deadline: {todo.date}</h3>
@@ -125,9 +114,9 @@ const TodoDetails = ({ todo }) => {
             Edit Deadline
           </button>
         </div>
-        </div>
+        </div> */}
         
-        <div className="flex-input">
+        {/* <div className="flex-input">
         <input type="checkbox" className="toggle" onClick={handleToggoleDuration} />
         <div className={!hiddenDuration ? "hide" : ""} >
         <h3>Duration: {todo.duration} </h3>
@@ -144,7 +133,7 @@ const TodoDetails = ({ todo }) => {
             Edit Duration
           </button>
         </div>
-        </div>
+        </div> */}
         
         <div className="flex-input">
         <CompletedTodo todo={todo} />

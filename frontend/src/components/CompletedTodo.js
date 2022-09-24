@@ -41,7 +41,7 @@ export default function CompletedTodo({todo}) {
   return (
     <>
     <h3>Completed: {completed ? formatDistanceToNow(new Date(completedAt), { addSuffix: true }) :'Not yet'} </h3>
-    <input className="toggle" type="checkbox" onChange={handleClick} checked={completed} />
+    <input className="toggle complate" type="checkbox" onChange={handleClick} checked={completed} />
     </>
 
   )

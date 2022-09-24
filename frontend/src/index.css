@@ -296,11 +296,9 @@ input.error {
   border: none;
   cursor: pointer;
   background-color: var(--second-color-dark);
-  -webkit-transition: background-color ease 0.3s;
-  transition: background-color ease 0.3s;
 }
 
-.box .toggle:before {
+.box .complate::before {
   content: "";
   display: block;
   position: absolute;
@@ -325,11 +323,11 @@ input.error {
   transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
 }
 
-.box .toggle:checked {
+.box .complate:checked {
   background-color: var(--first-color);
 }
 
-.box .toggle:checked:before {
+.box .complate:checked:before {
   left: 32px;
 }
 
