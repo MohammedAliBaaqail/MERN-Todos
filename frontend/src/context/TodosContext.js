@@ -40,13 +40,13 @@ export const todoReducer = (state, action) => {
 
 
 export const TodoContextProvider = ({ children }) => {
-    const [state, dispatch ] = useReducer(todoReducer, {
-        todos: null
-    })
-     
-  return (
-    <TodosContext.Provider value={{...state , dispatch}}>
-      {children}
-    </TodosContext.Provider>
-  );
-}
+    const [state, dispatch] = useReducer(todoReducer, {
+      todos: [] // Initialize as an empty array
+    });
+  
+    return (
+      <TodosContext.Provider value={{ ...state, dispatch }}>
+        {children}
+      </TodosContext.Provider>
+    );
+  }

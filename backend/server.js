@@ -1,33 +1,44 @@
-require('dotenv').config();
+require('dotenv').config()
+const express = require("express")
+const todoRouts = require('./routes/todos')
 
-const mongoose = require('mongoose');
-const express = require('express');
-const todosRoutes = require('./routes/todos');
-const userRoutes = require('./routes/user')
+const userRouts = require('./routes/user')
 
-const app = express();
-// middleware
-app.use(express.json());
-app.use((req, res, next) => {
-    // console.log(req.path , req.method);
-    next();
-});
+const mongoose = require('mongoose')
 
+// express app
+const app = express() 
+
+//middle ware 
+app.use(express.json())
 
 
-// routes
-app.use('/api/todos', todosRoutes);
-app.use('/api/user', userRoutes);
-
-
-// connect to db
-mongoose.connect(process.env.DB_URL)
-.then(() => {
-
-    // listen for requests :)
-
-app.listen(process.env.PORT, () => {
-    console.log('connected to DB , Server started on port ' + process.env.PORT);
-  });
+app.use((req, res , next) => {
+    console.log(req.path , req.method)
+    next()
 })
-.catch(err => console.log(err));
+
+// routs 
+
+app.use('/todos' ,  todoRouts)
+app.use('/user' ,  userRouts)
+
+
+//coneect to db 
+mongoose.connect(process.env.MONG_URI)
+    .then(() => {
+        // only listen to the port when the database connection is already done 
+        app.listen(process.env.PORT , () => {
+            console.log('connected to DB && listening on port 4000 !!')
+        })
+        
+
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+
+// listen for request 
+
+
+process.env 

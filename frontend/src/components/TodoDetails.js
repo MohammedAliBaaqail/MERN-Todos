@@ -1,65 +1,105 @@
+import React from "react";
 import { useState } from "react";
 import { useTodosContext } from "../hooks/useTodosContext";
 import { useAuthContext } from "../hooks/useAuthContext";
-import React from "react";
-
+import Countdown from "react-countdown";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
-import CompletedTodo from "./CompletedTodo";
-import EditTitle from "./EditTitle";
-import EditDuration from "./EditDuration";
-import EditDate from "./EditDate";
 
-const TodoDetails = ({ todo }) => {
+import calculateTimePercentage from "../utils/calculateTimePercentage";
+
+export default function TodoDetails({ todo, isAdmin }) {
   const { dispatch } = useTodosContext();
   const { user } = useAuthContext();
 
+  const [editing, setEditing] = useState(false);
   const [title, setTitle] = useState(todo.title);
-  const [duration, setDuration] = useState(todo.duration);
   const [date, setDate] = useState(todo.date);
+  const [description, setDescription] = useState(todo.description);
+  const [completed, setCompleted] = useState(todo.completed);
+  const [completedAt, setCompletedAt] = useState(todo.completedAt);
 
-  const [hiddenTitle, setHiddenTitle] = useState(true);
-  const [hiddenDate, setHiddenDate] = useState(true);
-  const [hiddenDuration, setHiddenDuration] = useState(true);
+  const handleClick = async (e) => {
+    const isButton =
+      e.target.tagName === "BUTTON" || e.target.closest("button");
 
-  const updetedTodo = { title, duration, date };
+    if (!isButton)
+      try {
+        const updatedCompleted = !completed;
+        const updatedCompletedAt = updatedCompleted ? new Date() : null;
 
-  const handleToggoleTitle = () => {
-    setHiddenTitle(!hiddenTitle);
-  };
-  const handleToggoleDate = () => {
-    setHiddenDate(!hiddenDate);
-  };
-  const handleToggoleDuration = () => {
-    setHiddenDuration(!hiddenDuration);
+        const response = await fetch(
+          `/todos/${isAdmin ? "admin/" : "basic/"}${todo._id}`,
+          {
+            method: "PATCH",
+            body: JSON.stringify({
+              completed: updatedCompleted,
+              completedAt: updatedCompletedAt,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+
+        if (response.ok) {
+          setCompleted(updatedCompleted);
+          setCompletedAt(updatedCompletedAt);
+
+          const data = await response.json();
+          dispatch({ type: "UPDATE_TODO", payload: data });
+        } else {
+          // Handle error response
+          console.error("Failed to update completed status.");
+        }
+      } catch (error) {
+        console.error("Error occurred while updating completed status:", error);
+      }
   };
 
   const handleEdit = async (e) => {
     e.preventDefault();
 
-    if (!user) {
+    if (!user || !editing) {
       return;
     }
 
-    const response = await fetch("/api/todos/" + todo._id, {
-      method: "PATCH",
-      body: JSON.stringify(updetedTodo),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
-    const json = await response.json();
+    try {
+      const updatedTodo = { title, date, description };
+      const response = await fetch(
+        `/todos/${isAdmin ? "admin/" : "basic/"}${todo._id}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(updatedTodo),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
 
-    if (response.ok) {
-      dispatch({ type: "UPDATE_TODO", payload: json });
-      // setHidden(!hidden)
-     
-
+      if (response.ok) {
+        const json = await response.json();
+        dispatch({ type: "UPDATE_TODO", payload: json });
+      } else {
+        // Handle error response
+        console.error("Failed to update todo.");
+      }
+    } catch (error) {
+      console.error("Error occurred while updating todo:", error);
     }
+
+    setEditing(false);
   };
 
-  const handleClick = async () => {
-
+  const renderCountdown = ({ days, hours, minutes, seconds }) => {
+    return (
+      <div>
+        {days}d {hours}h {minutes}m {seconds}s
+      </div>
+    );
+  };
+  const handleDeleteClick = async () => {
     if (!user) {
       return;
     }
@@ -71,83 +111,110 @@ const TodoDetails = ({ todo }) => {
 
     await sleep(500);
 
-    const response = await fetch("/api/todos/" + todo._id, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
+    const response = await fetch(
+      `/todos/${isAdmin ? "admin/" : "basic/"}${todo._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
     const json = await response.json();
 
     if (response.ok) {
       dispatch({ type: "DELETE_TODO", payload: json });
-      
     }
   };
 
+  console.log(calculateTimePercentage(todo.createdAt, todo.date));
+
   return (
-    <div
-      id={todo._id}
-      className="todo-details animate__animated animate__bounceIn "
-    >
-      
-      <div className="box">
-
-
-      <EditTitle todo={todo}/>
-      <EditDuration todo={todo}/>
-      <EditDate todo={todo}/>
-        
-        {/* <div className="flex-input">
-        <input type="checkbox" className="toggle" onClick={handleToggoleDate} />
-        <div className={!hiddenDate ? "hide" : ""} >
-        <h3>Deadline: {todo.date}</h3>
-        </div>
-         <div className={hiddenDate ? "hide" : ""} >
-          <input
-          defaultValue={todo.date}
-            type="date"
-            className="input updated-deadline"
-            onChange={(e) => setDate(e.target.value)}
-          />
-          <button className="btn" onClick={handleEdit}>
-            Edit Deadline
+    <div className="card" onClick={handleClick}>
+      <div className={!editing ? "hide" : ""}></div>
+      <div className="">
+        <div className="card-firstRow">
+          <button
+            className="material-symbols-outlined"
+            onClick={() => setEditing(!editing)}
+          >
+            edit
           </button>
-        </div>
-        </div> */}
-        
-        {/* <div className="flex-input">
-        <input type="checkbox" className="toggle" onClick={handleToggoleDuration} />
-        <div className={!hiddenDuration ? "hide" : ""} >
-        <h3>Duration: {todo.duration} </h3>
-        </div>
-       
-        <div className={hiddenDuration ? "hide" : ""} >
+
+          <h3 className={editing ? "hide" : "todo-title"}>{todo.title}</h3>
           <input
-          defaultValue={todo.duration}
+            id="titleInput"
+            value={title}
             type="text"
-            className="input updated-duration"
-            onChange={(e) => setDuration(e.target.value)}
+            className={!editing ? "hide" : "input updated-deadline"}
+            onChange={(e) => setTitle(e.target.value)}
           />
-          <button className="btn" onClick={handleEdit}>
-            Edit Duration
+          <button
+            className="material-symbols-outlined"
+            onClick={handleDeleteClick}
+          >
+            Delete{" "}
           </button>
         </div>
-        </div> */}
-        
-        <div className="flex-input">
-        <CompletedTodo todo={todo} />
+        {/* {completed ? '' :  <label htmlFor="dateInput">Deadline:</label>} */}
+        {/* <h3 className={editing ? "hide" : ""}>{todo.date}</h3> */}
+        <div className={editing ? "hide" : "todo-des"}>
+          {" "}
+          <p>{todo.description}</p>{" "}
         </div>
-        <h3>
+        <textarea
+          id="descriptionInput"
+          value={description}
+          type="textarea"
+          className={!editing ? "hide" : "input"}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <input
+          id="dateInput"
+          value={date}
+          type="datetime-local"
+          className={!editing ? "hide" : "input updated-deadline"}
+          onChange={(e) => setDate(e.target.value)}
+        />
+        {completed | editing ? (
+          ""
+        ) : (
+          <Countdown
+            date={todo.date}
+            renderer={renderCountdown}
+            onTick={console.log("gg")}
+          />
+        )}
+        {/*            
+          <label htmlFor="descriptionInput">Description:</label> */}
+      </div>
+
+      <div className={editing ? "hide" : "todo-completedAt"}>
+        {" "}
+        <h4>
+          {completed
+            ? "Completed " +
+              formatDistanceToNow(new Date(completedAt), { addSuffix: true })
+            : ""}{" "}
+        </h4>{" "}
+      </div>
+
+      {/* <input className="toggle complate" type="checkbox" onChange={handleClick} checked={completed} /> */}
+      <div className="todo-createdAt">
+        <h4 className={editing ? "hide" : ""}>
           Created{" "}
           {formatDistanceToNow(new Date(todo.createdAt), { addSuffix: true })}
-        </h3>
-        <button className="material-symbols-outlined" onClick={handleClick}>
-          Delete{" "}
+        </h4>
+      </div>
+      <div className={!editing ? "hide" : "todo-btn"} >
+        <button
+          id={todo._id + todo.date}
+          className={!editing ? "hide" : "btn"}
+          onClick={handleEdit}
+        >
+          Submit
         </button>
       </div>
     </div>
   );
-};
-
-export default TodoDetails;
+}

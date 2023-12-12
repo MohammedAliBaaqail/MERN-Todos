@@ -12,10 +12,10 @@ const todoSchema = new Schema({
         
         required: true
     },
-    duration: {
+    description: {
         type: String,
-        default: 'One Hour',
-        required: true
+        default:"No Description"
+
     },
     completed: {
         type: Boolean,
@@ -28,6 +28,10 @@ const todoSchema = new Schema({
     user_id: {
       type: String,
       required: true
+    },
+    username:{
+        type:String,
+        required:true
     }
 }, {timestamps: true});
 
